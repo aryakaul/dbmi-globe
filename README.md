@@ -1,4 +1,4 @@
-<h1 align="center"> DBMI DEI Happy Hour -- Around the World in one department! </h1>
+<h1 align="center"> Around the World in one department! </h1>
 
 <h3 align="center"><img src="./assets/dymaxion.gif" width="700px"></h3>
 
