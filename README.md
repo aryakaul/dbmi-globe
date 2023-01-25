@@ -1,2 +1,7 @@
-# dbmi-globe
-online globe representing the semi-global diversity of the department of biomedical informatics at HMS!
+<h1 align="center"> DBMI DEI Happy Hour -- Around the World in one department! </h1>
+
+<h3 align="center"><img src="./assets/dymaxion.gif" width="700px"></h3>
+
+<p align="center"> 🌎🌍🌏 - 3d globe gang 💪 </p>
+
+Online globe representing the semi-global diversity of the Department of Biomedical Informatics at HMS!
