@@ -1,33 +1,20 @@
-#!/bin/bash
-set -u
-set -e
 
-dl_googlesheet() {
-    form_link="$(<"$form_link_file")"
-    latlongdata="./docs/locations.csv"
-    echo "name,lat,lng" > $latlongdata
-    curl -L $form_link | sed 1d | awk -F '\t' '{printf "%s,%s\n", $2, $3}' >> $latlongdata
-}
-
-build_website() {
-    num_responses=$(wc -l $latlongdata | awk '{print $1}')
-    echo "
 <head>
   <style> body { margin: 0; } </style>
-  <script src="//unpkg.com/d3"></script>
-  <script src="//unpkg.com/d3-dsv"></script>
-  <script src="//unpkg.com/globe.gl"></script>
+  <script src=//unpkg.com/d3></script>
+  <script src=//unpkg.com/d3-dsv></script>
+  <script src=//unpkg.com/globe.gl></script>
 </head>
 
 <body>
-  <div id="globeViz"></div>
+  <div id=globeViz></div>
 
   <script>
 
     const weightColor = d3.scaleSequentialSqrt(d3.interpolateYlOrRd)
-        .domain([0, $num_responses]);
+        .domain([0, 2]);
 
-    const colorInterpolator = t => \`rgba(255,100,50,\${Math.sqrt(1-t)})\`;
+    const colorInterpolator = t => `rgba(255,100,50,${Math.sqrt(1-t)})`;
 
     const dbmi = [{
         lat: 42.3354375,
@@ -55,11 +42,11 @@ build_website() {
       .hexTopColor(d => weightColor(d.sumWeight))
       .hexSideColor(d => weightColor(d.sumWeight))
       //.hexBinMerge(true)
-      .hexLabel(d => \`
+      .hexLabel(d => `
         <ul><li>
-        \${d.points.slice().sort((a, b) => b.name - a.name).map(d => d.name).filter(Boolean).join('</li><li>')}
+        ${d.points.slice().sort((a, b) => b.name - a.name).map(d => d.name).filter(Boolean).join('</li><li>')}
         </li></ul>
-      \`)
+      `)
       .ringsData(dbmi)
       .ringMaxRadius('maxR')
       .ringPropagationSpeed('propagationSpeed')
@@ -76,34 +63,4 @@ build_website() {
     world.controls().autoRotateSpeed = 0.1;
   </script>
 </body>
-" > $(pwd)/docs/index.html
 
-    git add ./*
-    git commit -m "update website"
-    git push
-}
-
-main() {
-    form_link_file=""
-    for i in "$@"; do
-    case $i in
-        -f|--formlinkfile)
-        form_link_file="$2"
-        shift
-        shift
-        ;;
-        *)    
-        ;;
-    esac
-    done
-    [ -z "$form_link_file" ] && die "form link file not passed!"
-    dl_googlesheet
-    build_website
-}
-
-die() {
-    printf 'error: %s.\n' "$1" >&2
-    exit 1
-}
-
-main "$@"
