@@ -1,6 +1,5 @@
 #!/bin/bash
 set -u
-#set -e
 set -x
 
 dl_googlesheet() {
