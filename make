@@ -6,7 +6,7 @@ dl_googlesheet() {
     form_link="$(<"$form_link_file")"
     latlongdata="./docs/locations.csv"
     echo "name,lat,lng" > $latlongdata
-    curl -L $form_link | sed 1d | awk -F '\t' '{printf "%s,%s\n", $2, $3}' >> $latlongdata
+    curl -L $form_link | sed 1d | awk -F '\t' '{printf "%s,%s\n", $2, $3}' | sed 's/, /,/'>> $latlongdata
 }
 
 build_website() {
