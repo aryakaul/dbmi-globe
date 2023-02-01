@@ -1,4 +1,4 @@
-<h1 align="center"> <a href="https://aryakaul.github.io/dbmi-globe">Around the World in one department!</a></h1>
+<h1 align="center"> <a href="https://aryakaul.github.io/dbmi-globe" target="_blank">Around the World in one department!</a></h1>
 
 <h2 align="center"><img src="./assets/dymaxion.gif" width="700px"></h2>
 
