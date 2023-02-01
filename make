@@ -1,6 +1,7 @@
 #!/bin/bash
 set -u
-set -e
+#set -e
+set -x
 
 dl_googlesheet() {
     form_link="$(<"$form_link_file")"
@@ -78,7 +79,7 @@ build_website() {
 </body>
 " > $(pwd)/docs/index.html
 
-    git add ./*
+    git add ./* 2> /dev/null
     git commit -m "update website"
     git push
 }
