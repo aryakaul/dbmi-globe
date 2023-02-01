@@ -1,6 +1,6 @@
 #!/bin/bash
 set -u
-set -x
+#set -x
 
 dl_googlesheet() {
     form_link="$(<"$form_link_file")"
