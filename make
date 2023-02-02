@@ -25,7 +25,7 @@ build_website() {
   <script>
 
     const weightColor = d3.scaleSequentialSqrt(d3.interpolateYlOrRd)
-        .domain([1, $num_responses]);
+        .domain([0, $num_responses]);
 
     const colorInterpolator = t => \`rgba(255,100,50,\${Math.sqrt(1-t)})\`;
 
