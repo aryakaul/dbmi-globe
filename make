@@ -25,7 +25,7 @@ build_website() {
   <script>
 
     const weightColor = d3.scaleSequentialSqrt(d3.interpolateYlOrRd)
-        .domain([0, $num_responses]);
+        .domain([1, $num_responses]);
 
     const colorInterpolator = t => \`rgba(255,100,50,\${Math.sqrt(1-t)})\`;
 
@@ -38,7 +38,7 @@ build_website() {
         label: 'DBMI',
         color: 'salmon',
         radius: 0.3,
-        size: 1,
+        size: 1.8,
     }];
 
     const world = Globe()
